@@ -1,0 +1,58 @@
+@startuml
+!include _estilo.iuml
+hide circle
+skinparam linetype ortho
+entity "cliente" as cliente {
+  * id_cliente : INT <<PK>>
+  --
+  nombre : VARCHAR(100)
+  telefono : VARCHAR(20)
+  email : VARCHAR(100) <<UNIQUE>>
+}
+entity "administrador" as administrador {
+  * id_admin : INT <<PK>>
+  --
+  usuario : VARCHAR(50) <<UNIQUE>>
+  contrasenia : VARCHAR(255)
+}
+entity "menu_paquete" as menu {
+  * id_menu : INT <<PK>>
+  --
+  nombre : VARCHAR(100)
+  precio_persona : DECIMAL(10,2)
+  tipo_preparacion : VARCHAR(50)
+}
+entity "reserva" as reserva {
+  * id_reserva : INT <<PK>>
+  --
+  id_cliente : INT <<FK>>
+  id_admin : INT <<FK>> NULL
+  id_menu : INT <<FK>>
+  fecha : DATE
+  cant_comensales : INT  (10..150)
+  estado : VARCHAR(20)
+  fecha_solicitud : DATETIME
+}
+entity "evento" as evento {
+  * id_evento : INT <<PK>>
+  --
+  id_reserva : INT <<FK>> <<UNIQUE>>
+  fecha : DATE
+  direccion : VARCHAR(150)
+  horario : TIME
+}
+entity "senia_pago" as senia {
+  * id_senia : INT <<PK>>
+  --
+  id_reserva : INT <<FK>>
+  monto : DECIMAL(10,2)
+  fecha : DATE
+  medio_de_pago : VARCHAR(30)
+  estado : VARCHAR(20)
+}
+cliente ||--o{ reserva
+menu ||--o{ reserva
+administrador |o--o{ reserva
+reserva ||--o| evento
+reserva ||--o{ senia
+@enduml

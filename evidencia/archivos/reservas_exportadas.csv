@@ -1,0 +1,6 @@
+id_reserva;fecha;id_cliente;id_menu;comensales;estado
+1;2026-11-15;1;1;25;Confirmada
+2;2026-11-22;2;2;15;Confirmada
+3;2026-12-05;3;3;40;Confirmada
+4;2026-12-12;1;3;60;Pendiente
+5;2026-12-19;4;2;30;Pendiente

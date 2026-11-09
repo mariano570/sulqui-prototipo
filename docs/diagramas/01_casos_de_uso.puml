@@ -1,0 +1,27 @@
+@startuml
+!include _estilo.iuml
+left to right direction
+actor "Cliente" as C
+actor "Administrador\n(Mariano)" as A
+rectangle "Sistema Sulqui (aplicación de escritorio)" {
+  usecase "CU-01 Consultar\ndisponibilidad de fechas" as U1
+  usecase "CU-02 Solicitar\nreserva de evento" as U2
+  usecase "CU-03 Seleccionar\nmenú / paquete" as U3
+  usecase "CU-06 Consultar\nhistorial de reservas" as U6
+  usecase "CU-04 Gestionar\ncalendario de eventos" as U4
+  usecase "CU-05 Confirmar o\nrechazar reserva" as U5
+  usecase "CU-08 Gestionar\ncatálogo de menús" as U8
+  usecase "CU-07 Registrar\nseña / pago" as U7
+  usecase "Enviar notificación" as UN
+}
+C --> U1
+C --> U2
+C --> U3
+C --> U6
+U4 <-- A
+U5 <-- A
+U8 <-- A
+U7 <-- A
+U5 ..> UN : <<include>>
+U7 ..> UN : <<include>>
+@enduml

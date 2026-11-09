@@ -1,0 +1,26 @@
+@startuml
+!include _estilo.iuml
+left to right direction
+node "Terminal de clientes\n<<device>> PC del local" as T {
+  node "<<execution environment>>\nJRE 17" as TJ {
+    artifact "sulqui-app.jar\n(modo Cliente)" as A1
+    artifact "sulqui.properties\n(db.url = IP de la PC admin)" as P1
+  }
+}
+node "PC del administrador\n<<device>> servidor de datos" as S {
+  node "<<execution environment>>\nJRE 17" as SJ {
+    artifact "sulqui-app.jar\n(modo Administración)" as A2
+    artifact "sulqui.properties\n(db.url = localhost)" as P2
+    artifact "datos/*.csv\n(respaldos y exportaciones)" as CSV
+  }
+  node "<<execution environment>>\nMySQL Server 8" as MY {
+    database "sulqui_db" as DB
+  }
+}
+node "Servidor de correo\n<<device>> proveedor externo" as M {
+  node "<<execution environment>>\nServicio SMTP" as SMTP
+}
+A1 --> DB : JDBC sobre TCP/IP\npuerto 3306 (LAN)
+A2 --> DB : JDBC\nlocalhost:3306
+A2 --> SMTP : SMTP + STARTTLS\npuerto 587 (Internet)
+@enduml

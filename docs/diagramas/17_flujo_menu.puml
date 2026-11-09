@@ -1,0 +1,35 @@
+@startuml
+!include _estilo.iuml
+start
+:Mostrar encabezado;
+repeat
+  :Mostrar MENU PRINCIPAL;
+  repeat
+    :Leer opcion;
+  repeat while (¿Es un entero entre 0 y 4?) is (no) not (sí)
+  switch (opcion)
+  case (1)
+    :Consultar disponibilidad;
+  case (2)
+    :Solicitar reserva;
+  case (3)
+    :Ver mis reservas;
+  case (4)
+    :Login (hasta 3 intentos)
+    y menú de administración
+    (opciones 1 a 13, incluye
+    reportes y archivos);
+  case (0)
+    :Mensaje de despedida;
+  endswitch
+  note right
+    Cada opción se ejecuta dentro de
+    try { ... } catch (SulquiException)
+    catch (PersistenciaException)
+    catch (SQLException) ...: un error
+    se informa y el menú continúa.
+  end note
+repeat while (¿opcion != 0?) is (sí) not (no)
+:finally: "Sesion finalizada";
+stop
+@enduml

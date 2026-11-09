@@ -1,0 +1,40 @@
+@startuml
+!include _estilo.iuml
+autonumber
+hide footbox
+actor "Administrador" as A
+boundary ":VentanaAdministrador" as V <<boundary>>
+control ":ReservaService" as S <<control>>
+participant ":Conexion" as C <<Singleton>>
+participant ":ReservaDAO" as RD <<DAO>>
+participant ":EventoDAO" as ED <<DAO>>
+database "sulqui_db" as BD <<MySQL>>
+
+A -> V : pulsa "Confirmar" e ingresa\ndirección y horario (DialogoEvento)
+activate V
+V -> S : confirmarReserva(id, idAdmin, direccion, horario)
+activate S
+S -> S : validar RN-04 (pendiente), RN-01 (fecha libre),\ndirección y horario obligatorios
+S -> C : enTransaccion("confirmar la reserva", trabajo)
+activate C
+C -> BD : setAutoCommit(false)
+C -> RD : actualizarEstado(con, id, idAdmin, CONFIRMADA)
+RD -> BD : UPDATE reserva SET estado = 'Confirmada' ...
+C -> ED : insertar(con, evento)
+ED -> BD : INSERT INTO evento (...)
+alt todas las sentencias se ejecutaron
+  C -> BD : commit()
+  C --> S : id del evento
+  S -> S : notificar al cliente (email y WhatsApp)
+  S --> V : ok
+  V --> A : "Reserva confirmada; cliente notificado"
+else MySQL rechaza una sentencia (por ejemplo, dirección > 150 caracteres)
+  C -> BD : rollback()
+  C --> S : PersistenciaException (DATO_INVALIDO)
+  deactivate C
+  S --> V : propaga la excepción (no se notifica)
+  deactivate S
+  V --> A : mensaje en rojo: "La reserva sigue pendiente"
+end
+deactivate V
+@enduml

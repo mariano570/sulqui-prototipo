@@ -1,0 +1,41 @@
+@startuml
+!include _estilo.iuml
+hide circle
+hide empty members
+class Exception <<java.lang>>
+class RuntimeException <<java.lang>>
+abstract class SulquiException <<abstract, verificada>> {
+  # SulquiException(mensaje : String)
+  + {abstract} getTitulo() : String
+}
+class ValidacionException {
+  + getTitulo() : String {"Dato no valido"}
+}
+class RecursoNoEncontradoException {
+  - recurso : String
+  - identificador : Object
+  + getTitulo() : String {"No encontrado"}
+}
+class NotificacionException {
+  + getTitulo() : String {"Notificacion no enviada"}
+}
+class ArchivoException {
+  + getTitulo() : String {"Error de archivo"}
+}
+class EstructuraVaciaException <<no verificada>>
+class SQLException <<java.sql>>
+class PersistenciaException <<com.sulqui.dao>> {
+  - tipo : Tipo {CONEXION, DUPLICADO, REFERENCIA,\n RESTRICCION, DATO_INVALIDO, OTRO}
+  + {static} traducir(e : SQLException, operacion : String)
+  + getTitulo() : String
+}
+Exception <|-- SulquiException
+Exception <|-- RuntimeException
+Exception <|-- SQLException
+SulquiException <|-- ValidacionException
+SulquiException <|-- RecursoNoEncontradoException
+SulquiException <|-- NotificacionException
+SulquiException <|-- ArchivoException
+SQLException <|-- PersistenciaException
+RuntimeException <|-- EstructuraVaciaException
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+!include _estilo.iuml
+hide circle
+class NotificacionService {
+  - canales : List<CanalNotificacion>
+  - enviadas : List<String>
+  - errores : List<String>
+  + NotificacionService()
+  + NotificacionService(canales : CanalNotificacion...)
+  + notificar(cliente : Cliente, mensaje : String) : void
+}
+abstract class CanalNotificacion <<abstract>> {
+  - nombre : String
+  - enviados : int
+  # CanalNotificacion(nombre : String)
+  + enviar(cliente : Cliente, mensaje : String) : String {final}
+  # {abstract} obtenerDestino(cliente : Cliente) : String
+  # {abstract} entregar(destino : String, texto : String) : void
+  # formatear(mensaje : String) : String
+}
+class CanalEmail {
+  - remitente : String
+  + CanalEmail()
+  + CanalEmail(remitente : String)
+  # obtenerDestino(c) : String  {email}
+  # entregar(destino, texto) : void
+  # formatear(mensaje) : String
+}
+class CanalWhatsApp {
+  - {static} PREFIJO_PAIS : String = "+54"
+  - {static} MAX_CARACTERES : int = 160
+  + CanalWhatsApp()
+  # obtenerDestino(c) : String  {+54 + telefono}
+  # entregar(destino, texto) : void
+  # formatear(mensaje) : String
+}
+class NotificacionException
+NotificacionService o-- "1..*" CanalNotificacion : canales
+CanalNotificacion <|-- CanalEmail
+CanalNotificacion <|-- CanalWhatsApp
+CanalNotificacion ..> NotificacionException : <<throws>>
+@enduml

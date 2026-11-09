@@ -1,0 +1,21 @@
+digraph G {
+  rankdir=LR; dpi=170;
+  node [fontname="DejaVu Sans", fontsize=11, shape=record, style="filled", fillcolor="#F6E3D7", color="#8A3A1B"];
+  edge [color="#444444", fontname="DejaVu Sans", fontsize=10];
+  subgraph cluster_cola {
+    label="Cola<Reserva>: se encola por el final y se desencola por el frente (FIFO)"; fontname="DejaVu Sans Bold"; fontsize=11; color="#8A3A1B"; style=rounded;
+    pc [shape=plaintext, style="", label="primero\n(frente)"];
+    c1 [label="{reserva #2|<s>siguiente}"];
+    c2 [label="{reserva #4|<s>siguiente}"];
+    c3 [label="{reserva #5|<s>null}"];
+    uc [shape=plaintext, style="", label="ultimo\n(final)"];
+    pc -> c1; c1:s -> c2; c2:s -> c3; uc -> c3 [constraint=false];
+  }
+  subgraph cluster_pila {
+    label="Pila<CambioPrecio>: se apila y desapila por el tope (LIFO)"; fontname="DejaVu Sans Bold"; fontsize=11; color="#8A3A1B"; style=rounded;
+    pp [shape=plaintext, style="", label="primero\n(tope)"];
+    p1 [label="{Asado: 9000 → 9500|<s>siguiente}"];
+    p2 [label="{Asado: 8500 → 9000|<s>null}"];
+    pp -> p1; p1:s -> p2;
+  }
+}

@@ -1,0 +1,7 @@
+target/
+config/sulqui.properties
+*.class
+.idea/
+*.iml
+.vscode/
+datos/

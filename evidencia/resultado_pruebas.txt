@@ -1,0 +1,116 @@
+Sulqui - resultado de las pruebas automatizadas (JUnit 5) - ejecucion del 09/11/2026
+Entorno: Java 21.0.12.1 (compilado con nivel 17), servidor MariaDB 10.11 (compatible con MySQL 8), base sulqui_test
+
+P25 obtenido: sesion de 444 lineas guardada en evidencia/sesion_menu_consola.txt; 23 verificaciones correctas
+P26 obtenido: misma instancia=true; conexiones validas y distintas
+P27 obtenido: registros por DAO [3, 3, 4, 2, 1]
+P28 obtenido: estado=Confirmada, evento #3 12:30 Bv. San Juan 800, Cordoba
+P29 obtenido: DATO_INVALIDO -> "No se pudo registrar el evento: un dato es demasiado largo, esta vacio o tiene un formato que la base no admite."; estado de #4=Pendiente
+P30 obtenido: DUPLICADO (1062), REFERENCIA (1451), RESTRICCION (4025), CONEXION
+P31 obtenido: eventos=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]; facturacion nov/dic=212500.00/440000.00; por estado=[2, 2, 0, 0, 0]; grilla[2][6]=-15
+P32 obtenido: 4 reservas exportadas; 3 menus respaldados; restauracion -> 3 actualizados, 1 agregado; precio menu 1 = 8500.00
+P33 obtenido: "Linea 3: El precio por persona debe ser mayor a cero." / encabezado rechazado / "No existe el archivo..."; precio menu 1 sin cambios
+P34 obtenido: DATO_INVALIDO; precio menu 1 = 8500.00 (sin cambios); menus = 3
+P17 obtenido: [[Email] Para: ana.gomez@example.com | Tu reserva fue CONFIRMADA. - Sulqui, eventos a fuego., [WhatsApp] Para: +543517001111 | Sulqui: Tu reserva fue CONFIRMADA.]
+P19 obtenido: precio sigue en $8500.00; titulos: Dato no valido / No encontrado / Notificacion no enviada
+P16 obtenido: Cliente #1 (ana.gomez@example.com) | Administrador #1 (mariano)
+P18 obtenido: enviadas=[[WhatsApp] Para: +543517009999 | Sulqui: Prueba]; errores=[El cliente Sin Email no tiene dato de contacto para el canal Email.]
+P1 obtenido: id=2 -> Cliente{2, Marcos Diaz, 3517004444, marcos.diaz@example.com}
+P2 obtenido: disponible=true
+P3 obtenido: disponible=false
+P4 obtenido: Reserva{2, cliente=1, fecha=2027-04-10, comensales=20, estado=Pendiente}, id_admin=null, total=$170000.00
+P5 obtenido: estado=Confirmada, id_admin=1, notificaciones=[[Email] Para: ana.gomez@example.com | Tu reserva #2 para el 2027-04-10 fue CONFIRMADA. - Sulqui, eventos a fuego., [WhatsApp] Para: +543517001111 | Sulqui: Tu reserva #2 para el 2027-04-10 fue CONFIRMADA.], 10/04/2027 disponible=false
+P6 obtenido: cliente 2 -> null; cliente 1 -> "El cliente 1 tiene reservas asociadas y no puede eliminarse."
+P7 obtenido: "La fecha 2027-03-13 ya tiene un evento confirmado."; reservas del cliente 1=2
+P8 obtenido: SQLException -> (conn=707) CONSTRAINT `chk_comensales` failed for `sulqui_test`.`reserva`
+P24 obtenido: 15/11/2026=false, 19/12/2026=true, 31/2/2027 -> "La fecha 31/2/2027 no existe."; cliente 99 -> "No existe el cliente con identificador 99."
+P21 obtenido: "lu" -> lista [Cliente{3, Lucia Fernandez, 3517003333, lucia.fernandez@example.com}]; "z" -> sin resultados
+P22 obtenido: clientes [Ana Gomez, Carlos Perez, Lucia Fernandez]; comensales 60 40 25 15
+P20 obtenido: cola de 2 pendientes, atendidas #2 y luego #4
+P23 obtenido: 8500 -> 9000 -> 9500; deshacer -> 9000; deshacer -> 8500; tercer deshacer: "No hay cambios de precio para deshacer."
+P15 obtenido: ordenado=Ana Gomez, Carlos Perez, Lucia Fernandez, Marcos Diaz, Martina Rossi; binaria("Lucia Fernandez")=2; binaria(prefijo "mar")=3; binaria("Pedro")=-1
+P13 obtenido: lista [Premium, Asado, Vegetariano]; obtener(3) -> IndexOutOfBoundsException
+P12 obtenido: "La pila esta vacia." / "La cola esta vacia."
+P14 obtenido: 10 15 15 25 40 60 150 (estable)
+P10 obtenido: desapilados C, B, A; pila vacia=true
+P11 obtenido: tras posponer -> [4, 5, 2]; desencolados 4, 5, 2
+P9 CE1 n=-5 obtenido: "La cantidad de comensales debe estar entre 10 y 150 (ingresado: -5)."
+P9 CE1 n=0 obtenido: "La cantidad de comensales debe estar entre 10 y 150 (ingresado: 0)."
+P9 CE1 n=9 obtenido: "La cantidad de comensales debe estar entre 10 y 150 (ingresado: 9)."
+P9 CE2 n=10 obtenido: reserva #2 Pendiente
+P9 CE2 n=11 obtenido: reserva #3 Pendiente
+P9 CE2 n=80 obtenido: reserva #4 Pendiente
+P9 CE2 n=149 obtenido: reserva #5 Pendiente
+P9 CE2 n=150 obtenido: reserva #6 Pendiente
+P9 CE3 n=151 obtenido: "La cantidad de comensales debe estar entre 10 y 150 (ingresado: 151)."
+P9 CE3 n=500 obtenido: "La cantidad de comensales debe estar entre 10 y 150 (ingresado: 500)."
+╷
+├─ JUnit Platform Suite ✔
+├─ JUnit Jupiter ✔
+│  ├─ Menu de seleccion por consola ✔
+│  │  └─ P25 Sesion completa del menu: opciones, datos invalidos y excepciones manejadas ✔
+│  ├─ Proyecto integrador (AP4): persistencia, patron DAO, arreglos y archivos ✔
+│  │  ├─ P26 Singleton: una unica instancia de Conexion entrega conexiones validas ✔
+│  │  ├─ P27 Interfaz Dao<T>: arreglo de DAO tratados de forma polimorfica, listas en Arr... ✔
+│  │  ├─ P28 Transaccion confirmada: reserva #2 pasa a Confirmada y se registra su evento ✔
+│  │  ├─ P29 Rollback: si falla el alta del evento, la reserva #4 sigue Pendiente ✔
+│  │  ├─ P30 PersistenciaException clasifica los errores de MySQL ✔
+│  │  ├─ P31 Arreglos: resumen anual por mes, conteo por estado y grilla del calendario ✔
+│  │  ├─ P32 Archivos: exportar reservas, respaldar el catalogo y restaurarlo ✔
+│  │  ├─ P33 Archivo invalido: se informa la linea con error y el catalogo no cambia ✔
+│  │  └─ P34 Rollback al restaurar: un registro rechazado por MySQL deshace todos ✔
+│  ├─ Pilares de la POO y excepciones ✔
+│  │  ├─ P17 Polimorfismo: el mismo aviso sale por email y por WhatsApp con distinto dest... ✔
+│  │  ├─ P19 Encapsulamiento y jerarquia de excepciones ✔
+│  │  ├─ P16 Herencia y polimorfismo: Persona[] con Cliente y Administrador ✔
+│  │  └─ P18 Excepcion manejada: cliente sin email -> falla el email y WhatsApp se envia ... ✔
+│  ├─ Casos de prueba funcionales Sulqui ✔
+│  │  ├─ P1 Alta de cliente con datos validos ✔
+│  │  ├─ P2 Disponibilidad de fecha libre (10/04/2027) ✔
+│  │  ├─ P3 Disponibilidad de fecha ocupada (13/03/2027) ✔
+│  │  ├─ P4 Solicitar reserva valida (cliente 1, menu 1, 10/04/2027, 20 comensales) ✔
+│  │  ├─ P5 Confirmar reserva pendiente #2 (admin 1) y notificar ✔
+│  │  ├─ P6 Eliminar cliente sin reservas (#2); baja de #1 rechazada ✔
+│  │  ├─ P7 Solicitar reserva sobre fecha ocupada (13/03/2027) ✔
+│  │  └─ P8 Defensa en la BD: INSERT directo con 151 comensales ✔
+│  ├─ Integracion con la base de datos ✔
+│  │  ├─ P24 Sobrecarga consultarDisponibilidad(dia, mes, anio) y fecha inexistente ✔
+│  │  ├─ P21 Busqueda binaria de clientes por nombre (prefijo "lu" y "z") ✔
+│  │  ├─ P22 Listados ordenados con merge sort (clientes por nombre, reservas por comensa... ✔
+│  │  ├─ P20 Cola de pendientes respeta el orden de llegada (#2 antes que #4) ✔
+│  │  └─ P23 Pila de cambios de precio: cambiar dos veces y deshacer en orden inverso ✔
+│  ├─ Estructuras de datos y algoritmos ✔
+│  │  ├─ P15 Ordenamiento por insercion y busqueda binaria/secuencial en arreglos ✔
+│  │  ├─ P13 Lista enlazada: agregar, obtener, eliminar y buscar; indice invalido ✔
+│  │  ├─ P12 Pila y cola vacias lanzan EstructuraVaciaException ✔
+│  │  ├─ P14 Merge sort sobre la lista enlazada: ordena y es estable ✔
+│  │  ├─ P10 Pila: apilar 3 elementos y desapilar en orden inverso (LIFO) ✔
+│  │  └─ P11 Cola: encolar 3 elementos, desencolar en el mismo orden (FIFO) y posponer ✔
+│  └─ P9 Particion de equivalencia: cantidad de comensales ✔
+│     └─ cantidadDeComensales(int, String, String) ✔
+│        ├─ -5 comensales [CE1] -> RECHAZA ✔
+│        ├─ 0 comensales [CE1] -> RECHAZA ✔
+│        ├─ 9 comensales [CE1] -> RECHAZA ✔
+│        ├─ 10 comensales [CE2] -> ACEPTA ✔
+│        ├─ 11 comensales [CE2] -> ACEPTA ✔
+│        ├─ 80 comensales [CE2] -> ACEPTA ✔
+│        ├─ 149 comensales [CE2] -> ACEPTA ✔
+│        ├─ 150 comensales [CE2] -> ACEPTA ✔
+│        ├─ 151 comensales [CE3] -> RECHAZA ✔
+│        └─ 500 comensales [CE3] -> RECHAZA ✔
+└─ JUnit Vintage ✔
+
+Test run finished after 1410 ms
+[        11 containers found      ]
+[         0 containers skipped    ]
+[        11 containers started    ]
+[         0 containers aborted    ]
+[        11 containers successful ]
+[         0 containers failed     ]
+[        43 tests found           ]
+[         0 tests skipped         ]
+[        43 tests started         ]
+[         0 tests aborted         ]
+[        43 tests successful      ]
+[         0 tests failed          ]
+

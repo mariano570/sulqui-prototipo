@@ -1,0 +1,44 @@
+@startuml
+!include _estilo.iuml
+|Cliente (terminal)|
+start
+:Ingresar fecha deseada;
+|Sistema Sulqui|
+:Verificar reservas confirmadas
+para la fecha (RN-01);
+if (¿Fecha disponible?) then (no)
+  |Cliente (terminal)|
+  :Elegir otra fecha;
+  stop
+else (sí)
+endif
+|Cliente (terminal)|
+:Completar datos, elegir menú
+y cantidad de comensales;
+|Sistema Sulqui|
+:Validar comensales (10 a 150)
+y calcular total estimado;
+if (¿Datos válidos?) then (no)
+  |Cliente (terminal)|
+  :Corregir datos;
+  stop
+else (sí)
+endif
+|Sistema Sulqui|
+:Registrar solicitud
+(estado Pendiente);
+|Administrador|
+:Revisar solicitudes pendientes;
+if (¿Confirma la reserva?) then (sí)
+  |Sistema Sulqui|
+  :Cambiar estado a Confirmada;
+else (no)
+  |Sistema Sulqui|
+  :Cambiar estado a Rechazada;
+endif
+:Enviar notificación al cliente
+(email);
+|Cliente (terminal)|
+:Recibir notificación;
+stop
+@enduml

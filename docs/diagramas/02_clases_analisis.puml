@@ -1,0 +1,41 @@
+@startuml
+!include _estilo.iuml
+hide circle
+hide methods
+class Cliente {
+  nombre
+  telefono
+  email
+}
+class Reserva {
+  fecha
+  cantComensales
+  estado
+  fechaSolicitud
+}
+class MenuPaquete {
+  nombre
+  precioPorPersona
+  tipoPreparacion
+}
+class Administrador {
+  usuario
+  contrasenia
+}
+class Evento {
+  fecha
+  direccion
+  horario
+}
+class SeniaPago {
+  monto
+  fecha
+  medioDePago
+  estado
+}
+Cliente "1" -- "0..*" Reserva : realiza >
+Reserva "0..*" -- "1" MenuPaquete : incluye >
+Administrador "0..1" -- "0..*" Reserva : confirma / rechaza >
+Reserva "1" -- "0..1" Evento : genera >
+Reserva "1" -- "0..*" SeniaPago : registra >
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+!include _estilo.iuml
+hide circle
+interface "Iterable<T>" as It <<interface>>
+abstract class "EstructuraEnlazada<T>" as EE <<abstract>> {
+  # primero : Nodo<T>
+  # ultimo : Nodo<T>
+  # tamanio : int
+  + {abstract} getTipo() : String
+  + estaVacia() : boolean
+  + tamanio() : int
+  + vaciar() : void
+  # insertarAlInicio(dato : T) : void
+  # insertarAlFinal(dato : T) : void
+  # quitarPrimero() : T
+  # verPrimero() : T
+  + aArreglo(generador) : T[]
+  + iterator() : Iterator<T>
+}
+class "Nodo<T>" as Nodo {
+  ~ dato : T
+  ~ siguiente : Nodo<T>
+}
+class "Pila<T>" as Pila {
+  + apilar(dato : T) : void
+  + desapilar() : T
+  + verTope() : T
+}
+class "Cola<T>" as Cola {
+  + encolar(dato : T) : void
+  + desencolar() : T
+  + verFrente() : T
+}
+class "ListaEnlazada<T>" as Lista {
+  + agregar(dato : T) : void
+  + agregarAlInicio(dato : T) : void
+  + obtener(indice : int) : T
+  + eliminar(indice : int) : T
+  + buscar(condicion) : T
+  + contar(condicion) : int
+  + ordenar(criterio : Comparator) : void
+  - ordenarPorMezcla(cabeza, criterio) : Nodo<T>
+  - buscarMedio(cabeza) : Nodo<T>
+  - fusionar(a, b, criterio) : Nodo<T>
+}
+class Algoritmos <<utility>> {
+  + {static} ordenarPorInsercion(arreglo : T[], criterio) : void
+  + {static} busquedaBinaria(ordenado : T[], comparacion) : int
+  + {static} busquedaSecuencial(arreglo : T[], comparacion) : int
+  + {static} compararPrefijo(texto, prefijo) : int
+}
+class EstructuraVaciaException
+It <|.. EE
+EE <|-- Pila
+EE <|-- Cola
+EE <|-- Lista
+EE o-- "0..*" Nodo
+EE ..> EstructuraVaciaException : <<throws>>
+@enduml

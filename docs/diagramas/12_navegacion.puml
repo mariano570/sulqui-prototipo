@@ -1,0 +1,27 @@
+@startuml
+!include _estilo.iuml
+hide empty description
+state "P-01 Inicio" as P1
+state "Modo Cliente (terminal)" as MC {
+  state "P-02 Consultar fecha" as P2
+  state "P-03 Solicitar reserva" as P3
+  state "P-04 Mis reservas" as P4
+  P2 --> P3 : Reservar esta fecha
+}
+state "P-05 Login" as P5
+state "Modo Administración" as MA {
+  state "P-06 Solicitudes pendientes" as P6
+  state "P-07 Calendario" as P7
+  state "P-08 Registrar seña" as P8
+  state "P-09 Catálogo de menús" as P9
+  state "P-10 Reportes y archivos" as P10
+  state "Diálogo lugar y horario" as DE
+  P6 --> DE : Confirmar
+  DE --> P6 : transacción\n(commit / rollback)
+}
+[*] --> P1
+P1 --> P2 : Quiero reservar
+P1 --> P5 : Administración
+P5 --> P6 : credenciales válidas
+P5 --> P5 : credenciales inválidas
+@enduml

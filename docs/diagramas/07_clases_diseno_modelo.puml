@@ -1,0 +1,74 @@
+@startuml
+!include _estilo.iuml
+hide circle
+skinparam linetype ortho
+package "com.sulqui.modelo  (entidades)" {
+abstract class Persona <<abstract>> {
+  - id : int
+  + {abstract} getIdentificador() : String
+  + {abstract} getRol() : String
+  + describir() : String
+}
+class Cliente {
+  - nombre : String
+  - telefono : String
+  - email : String
+  + get/set…()
+}
+class Reserva {
+  - idReserva : int
+  - idCliente : int
+  - idAdmin : Integer
+  - idMenu : int
+  - fecha : LocalDate
+  - cantComensales : int
+  - estado : EstadoReserva
+  - fechaSolicitud : LocalDateTime
+  + get/set…()
+}
+class MenuPaquete {
+  - idMenu : int
+  - nombre : String
+  - precioPorPersona : BigDecimal
+  - tipoPreparacion : String
+  + get/set…()
+}
+class Administrador {
+  - usuario : String
+  - contrasenia : String  {hash SHA-256}
+  + get/set…()
+}
+class Evento {
+  - idEvento : int
+  - idReserva : int
+  - fecha : LocalDate
+  - direccion : String
+  - horario : LocalTime
+  + get/set…()
+}
+class SeniaPago {
+  - idSenia : int
+  - idReserva : int
+  - monto : BigDecimal
+  - fecha : LocalDate
+  - medioDePago : String
+  - estado : String
+  + get/set…()
+}
+enum EstadoReserva <<enumeration>> {
+  PENDIENTE
+  CONFIRMADA
+  RECHAZADA
+  CANCELADA
+  FINALIZADA
+}
+}
+Cliente "1" -- "0..*" Reserva : realiza
+Reserva "0..*" -- "1" MenuPaquete : incluye
+Administrador "0..1" -- "0..*" Reserva : confirma/rechaza
+Reserva "1" -- "0..1" Evento : genera
+Reserva "1" -- "0..*" SeniaPago : registra
+Reserva ..> EstadoReserva
+Persona <|-- Cliente
+Persona <|-- Administrador
+@enduml

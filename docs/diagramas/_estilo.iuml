@@ -1,0 +1,78 @@
+skinparam dpi 170
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 11
+skinparam ArrowColor #444444
+skinparam ArrowFontSize 10
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #8A3A1B
+  HeaderBackgroundColor #F6E3D7
+  StereotypeFontColor #8A3A1B
+}
+skinparam package {
+  BorderColor #8A3A1B
+  BackgroundColor #FCF8F5
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FFF8E1
+  BorderColor #C9A227
+}
+skinparam usecase {
+  BackgroundColor #F6E3D7
+  BorderColor #8A3A1B
+}
+skinparam actorBorderColor #2B2B2B
+skinparam actorBackgroundColor #FFFFFF
+skinparam rectangle {
+  BorderColor #8A3A1B
+}
+skinparam node {
+  BackgroundColor #FCF8F5
+  BorderColor #8A3A1B
+}
+skinparam artifact {
+  BackgroundColor #FFFFFF
+  BorderColor #444444
+}
+skinparam database {
+  BackgroundColor #F6E3D7
+  BorderColor #8A3A1B
+}
+skinparam sequence {
+  LifeLineBorderColor #8A3A1B
+  ParticipantBorderColor #8A3A1B
+  ParticipantBackgroundColor #F6E3D7
+  ActorBorderColor #2B2B2B
+  BoundaryBorderColor #8A3A1B
+  BoundaryBackgroundColor #F6E3D7
+  ControlBorderColor #8A3A1B
+  ControlBackgroundColor #F6E3D7
+  EntityBorderColor #8A3A1B
+  EntityBackgroundColor #F6E3D7
+  DatabaseBorderColor #8A3A1B
+  DatabaseBackgroundColor #F6E3D7
+  GroupBorderColor #888888
+  GroupBackgroundColor #F3F3F3
+}
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #8A3A1B
+  DiamondBackgroundColor #F6E3D7
+  DiamondBorderColor #8A3A1B
+}
+skinparam swimlane {
+  BorderColor #8A3A1B
+  TitleFontStyle bold
+}
+skinparam folder {
+  BackgroundColor #FFFFFF
+  BorderColor #8A3A1B
+}
+skinparam state {
+  BackgroundColor #FFFFFF
+  BorderColor #8A3A1B
+  StartColor #2B2B2B
+}

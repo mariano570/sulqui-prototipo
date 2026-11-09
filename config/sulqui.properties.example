@@ -1,0 +1,15 @@
+# Copiar este archivo como config/sulqui.properties y completar los datos.
+# La aplicacion lo lee al iniciar (ver com.sulqui.dao.Conexion).
+
+# PC del administrador (MySQL en el mismo equipo):
+db.url=jdbc:mysql://localhost:3306/sulqui_db?serverTimezone=America/Argentina/Cordoba
+# Terminal de clientes (MySQL en la PC del administrador, red local):
+# db.url=jdbc:mysql://192.168.1.10:3306/sulqui_db?serverTimezone=America/Argentina/Cordoba
+
+db.usuario=sulqui_app
+db.contrasenia=cambiar_esta_clave
+
+# Notificaciones por correo (version productiva; en el prototipo se simulan por consola)
+smtp.host=smtp.gmail.com
+smtp.puerto=587
+smtp.usuario=reservas.sulqui@example.com

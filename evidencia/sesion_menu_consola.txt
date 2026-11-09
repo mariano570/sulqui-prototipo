@@ -1,0 +1,444 @@
+------------------------------------------------------------
+  SULQUI - Reservas de eventos gastronomicos a fuego
+------------------------------------------------------------
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 1
+Ingrese la fecha del evento.
+  Dia: 15
+  Mes: 11
+  Anio: 2026
+  [X] La fecha 15/11/2026 ya tiene un evento confirmado.
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 1
+Ingrese la fecha del evento.
+  Dia: abc
+  "abc" no es un numero entero.
+  Dia: 32
+  Ingrese un valor entre 1 y 31.
+  Dia: 19
+  Mes: 12
+  Anio: 2026
+  [OK] La fecha 19/12/2026 esta disponible.
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 2
+Nombre y apellido: Martina Rossi
+Telefono (10 digitos): 3517005555
+Email: martina.rossi@example.com
+Menus disponibles:
+  1. Asado clasico        $   8.500,00 por persona
+  2. Comida al disco      $   7.200,00 por persona
+  3. Parrillada premium   $  11.000,00 por persona
+Elija un menu: 2
+Fecha del evento (dd/mm/aaaa): 31/02/2027
+  "31/02/2027" no es una fecha valida con formato dd/mm/aaaa.
+Fecha del evento (dd/mm/aaaa): 19/12/2026
+Cantidad de comensales (10 a 150): 151
+  [!] Dato no valido: La cantidad de comensales debe estar entre 10 y 150 (ingresado: 151).
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 2
+Nombre y apellido: Martina Rossi
+Telefono (10 digitos): 3517005555
+Email: martina.rossi@example.com
+Menus disponibles:
+  1. Asado clasico        $   8.500,00 por persona
+  2. Comida al disco      $   7.200,00 por persona
+  3. Parrillada premium   $  11.000,00 por persona
+Elija un menu: 2
+Fecha del evento (dd/mm/aaaa): 19/12/2026
+Cantidad de comensales (10 a 150): 30
+  [OK] Solicitud N.o 5 registrada como Pendiente. Total estimado: $ 216.000,00
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 3
+Email: ana.gomez@example.com
+  Reservas de Ana Gomez:
+   #4  12/12/2026  60 comensales  Pendiente
+   #1  15/11/2026  25 comensales  Confirmada
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 4
+Usuario: mariano
+Contrasenia: clave-equivocada
+  [X] Credenciales incorrectas (intento 1 de 3).
+Usuario: mariano
+Contrasenia: sulqui2026
+  Bienvenido, Administrador #1 (mariano).
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 1
+  En cola: 3 | Siguiente: #2 22/11/2026 - Carlos Perez - 15 comensales - Comida al disco
+  [C]onfirmar  [R]echazar  [P]osponer  [V]olver: P
+  Reserva #2 pospuesta al final de la cola.
+  En cola: 3 | Siguiente: #4 12/12/2026 - Ana Gomez - 60 comensales - Parrillada premium
+  [C]onfirmar  [R]echazar  [P]osponer  [V]olver: C
+  Direccion del evento: Av. Velez Sarsfield 500, Cordoba
+  Horario (hh:mm): 25:00
+  "25:00" no es un horario valido con formato hh:mm.
+  Horario (hh:mm): 20:30
+[EMAIL] De: reservas.sulqui@example.com | Para: ana.gomez@example.com | Tu reserva #4 para el 2026-12-12 a las 20:30 fue CONFIRMADA. Lugar: Av. Velez Sarsfield 500, Cordoba. - Sulqui, eventos a fuego.
+[WHATSAPP] +543517001111 | Sulqui: Tu reserva #4 para el 2026-12-12 a las 20:30 fue CONFIRMADA. Lugar: Av. Velez Sarsfield 500, Cordoba.
+  [OK] Reserva #4 confirmada.
+  En cola: 2 | Siguiente: #5 19/12/2026 - Martina Rossi - 30 comensales - Comida al disco
+  [C]onfirmar  [R]echazar  [P]osponer  [V]olver: R
+  Motivo: Sin disponibilidad del equipo
+[EMAIL] De: reservas.sulqui@example.com | Para: martina.rossi@example.com | Tu reserva #5 fue RECHAZADA. Motivo: Sin disponibilidad del equipo - Sulqui, eventos a fuego.
+[WHATSAPP] +543517005555 | Sulqui: Tu reserva #5 fue RECHAZADA. Motivo: Sin disponibilidad del equipo
+  [OK] Reserva #5 rechazada.
+  En cola: 1 | Siguiente: #2 22/11/2026 - Carlos Perez - 15 comensales - Comida al disco
+  [C]onfirmar  [R]echazar  [P]osponer  [V]olver: V
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 5
+  Nombre (o sus primeras letras): lu
+   Cliente{3, Lucia Fernandez, 3517003333, lucia.fernandez@example.com}
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 4
+  Ordenar por (1 nombre, 2 email): 1
+    1. Ana Gomez            ana.gomez@example.com          3517001111
+    2. Carlos Perez         carlos.perez@example.com       3517002222
+    3. Lucia Fernandez      lucia.fernandez@example.com    3517003333
+    4. Martina Rossi        martina.rossi@example.com      3517005555
+  Total: 4 clientes.
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 6
+  Ordenar por (1 fecha, 2 cantidad de comensales): 2
+   #4   12/12/2026   60 comensales  Confirmada
+   #3   05/12/2026   40 comensales  Confirmada
+   #5   19/12/2026   30 comensales  Rechazada
+   #1   15/11/2026   25 comensales  Confirmada
+   #2   22/11/2026   15 comensales  Pendiente
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 7
+   2. Comida al disco      $   7.200,00  (Al disco)
+   1. Asado clasico        $   8.500,00  (Asado)
+   3. Parrillada premium   $  11.000,00  (Asado)
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 8
+   2. Comida al disco      $   7.200,00  (Al disco)
+   1. Asado clasico        $   8.500,00  (Asado)
+   3. Parrillada premium   $  11.000,00  (Asado)
+  N.o de menu: 1
+  Nuevo precio por persona: $ abc
+  "abc" no es un importe valido (ej.: 30000 o 8500.50).
+  Nuevo precio por persona: $ 9200
+  [OK] Asado clasico: $8500.00 -> $9200 (cambios que se pueden deshacer: 1)
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 9
+  [OK] Se deshizo: Asado clasico: $8500.00 -> $9200. Precio restaurado a $ 8500.00
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 9
+  [!] Dato no valido: No hay cambios de precio para deshacer.
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 3
+   #1  15/11/2026  Ana Gomez
+   #3  05/12/2026  Lucia Fernandez
+   #4  12/12/2026  Ana Gomez
+  N.o de reserva: 4
+  Monto: $ 60000
+  Medio (1 Efectivo, 2 Transferencia, 3 Mercado Pago): 2
+[EMAIL] De: reservas.sulqui@example.com | Para: ana.gomez@example.com | Registramos tu senia de $60000 (Transferencia) para la reserva #4. - Sulqui, eventos a fuego.
+[WHATSAPP] +543517001111 | Sulqui: Registramos tu senia de $60000 (Transferencia) para la reserva #4.
+  [OK] Senia registrada y cliente notificado.
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 10
+  Anio: 2026
+   Mes          Eventos  Comensales   Facturacion estimada
+   Noviembre          1          25   $         212.500,00
+   Diciembre          2         100   $       1.100.000,00
+   TOTAL              3         125   $       1.312.500,00
+   Mes de mayor demanda: Diciembre | Promedio: 41,7 comensales por evento
+   Reservas por estado: Pendiente=1 Confirmada=3 Rechazada=1 Cancelada=0 Finalizada=0
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 11
+  [OK] 5 reservas exportadas a datos/exportaciones/reservas_2026-11-09.csv
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 12
+  [OK] 3 menus respaldados en datos/respaldos/catalogo_menus.csv
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 13
+  Archivo (D = respaldo por defecto, o escriba la ruta): D
+  [OK] Catalogo restaurado desde datos/respaldos/catalogo_menus.csv: 3 menus actualizados y 0 agregados.
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 2
+  Mes: 12
+  Anio: 2026
+   Diciembre 2026
+   Lu  Ma  Mi  Ju  Vi  Sa  Do
+        1   2   3   4   5*  6
+    7   8   9  10  11  12* 13
+   14  15  16  17  18  19  20
+   21  22  23  24  25  26  27
+   28  29  30  31
+   (*) dias con evento confirmado:
+   05/12/2026  #3  Lucia Fernandez  40 comensales  20:00 hs - Ruta 20 Km 8, Cordoba
+   12/12/2026  #4  Ana Gomez  60 comensales  20:30 hs - Av. Velez Sarsfield 500, Cordoba
+
+MENU DE ADMINISTRACION
+  1. Atender solicitudes pendientes (cola, en orden de llegada)
+  2. Ver calendario de un mes
+  3. Registrar senia
+  4. Listar clientes ordenados
+  5. Buscar cliente por nombre
+  6. Listar reservas ordenadas
+  7. Ver catalogo ordenado por precio
+  8. Cambiar precio de un menu
+  9. Deshacer ultimo cambio de precio
+ 10. Resumen anual de eventos (reporte)
+ 11. Exportar reservas a archivo CSV
+ 12. Respaldar catalogo de menus en archivo
+ 13. Restaurar catalogo de menus desde archivo
+  0. Cerrar sesion
+Opcion: 0
+  Sesion de administrador cerrada.
+
+MENU PRINCIPAL
+  1. Consultar disponibilidad de una fecha
+  2. Solicitar una reserva
+  3. Ver mis reservas
+  4. Ingresar como administrador
+  0. Salir
+Opcion: 0
+Gracias por usar Sulqui.
+Sesion finalizada.

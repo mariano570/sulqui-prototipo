@@ -1,0 +1,39 @@
+@startuml
+!include _estilo.iuml
+hide circle
+abstract class Persona <<abstract>> {
+  - id : int
+  # Persona()
+  # Persona(id : int)
+  + getId() : int
+  + setId(id : int) : void
+  + {abstract} getIdentificador() : String
+  + {abstract} getRol() : String
+  + describir() : String
+}
+class Cliente {
+  - nombre : String
+  - telefono : String
+  - email : String
+  + Cliente()
+  + Cliente(nombre, telefono, email)
+  + Cliente(id, nombre, telefono, email)
+  + getIdentificador() : String  {= email}
+  + getRol() : String  {= "Cliente"}
+  + compareTo(otro : Cliente) : int
+}
+class Administrador {
+  - usuario : String
+  - contrasenia : String
+  + Administrador()
+  + Administrador(id, usuario, contrasenia)
+  + getIdentificador() : String  {= usuario}
+  + getRol() : String  {= "Administrador"}
+}
+interface "Comparable<Cliente>" as Comp <<interface>> {
+  + compareTo(o : Cliente) : int
+}
+Persona <|-- Cliente
+Persona <|-- Administrador
+Comp <|.. Cliente
+@enduml

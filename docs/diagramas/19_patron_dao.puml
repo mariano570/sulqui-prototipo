@@ -1,0 +1,80 @@
+@startuml
+!include _estilo.iuml
+hide circle
+hide empty members
+skinparam linetype ortho
+package "com.sulqui.servicio  (control)" as SRV {
+  class ReservaService
+  class ClienteService
+  class MenuService
+  class PagoService
+  class ReporteService
+  class ArchivoService
+}
+package "com.sulqui.dao  (patrón DAO + Singleton)" as DAO {
+  interface "Dao<T>" as Dao <<interface>> {
+    + insertar(entidad : T) : int
+    + buscarPorId(id : int) : T
+    + listarTodos() : ArrayList<T>
+    + actualizar(entidad : T) : void  {default}
+    + eliminar(id : int) : boolean
+    + contar() : int
+  }
+  abstract class "DaoJdbc<T>" as DaoJdbc <<abstract>> {
+    # {abstract} tabla() : String
+    # {abstract} columnaId() : String
+    # {abstract} mapear(rs : ResultSet) : T
+    # consultarUno(sql, parametros) : T
+    # consultarLista(sql, parametros) : ArrayList<T>
+    # insertarConClave([con], operacion, sql, parametros) : int
+    # ejecutar([con], operacion, sql, parametros) : int
+  }
+  class ClienteDAO
+  class ReservaDAO {
+    + actualizarEstado(con, idReserva, idAdmin, estado) : void
+  }
+  class MenuDAO {
+    + insertar(con, menu) : int
+    + actualizar(con, menu) : boolean
+  }
+  class EventoDAO {
+    + insertar(con, evento) : int
+    + buscarPorReserva(idReserva) : Evento
+  }
+  class SeniaPagoDAO
+  class AdministradorDAO
+  class Conexion <<Singleton>> {
+    - {static} instancia : Conexion
+    - config : Properties
+    - Conexion()
+    + {static} getInstancia() : Conexion
+    + obtener() : Connection
+    + enTransaccion(operacion, trabajo : Trabajo<R>) : R
+  }
+  class PersistenciaException <<SQLException>> {
+    - tipo : Tipo
+    - operacion : String
+    + {static} traducir(e : SQLException, operacion) : PersistenciaException
+    + getTipo() : Tipo
+  }
+}
+class "MySQL 8 — sulqui_db" as BD <<base de datos>>
+Dao <|.. DaoJdbc
+DaoJdbc <|-- ClienteDAO
+DaoJdbc <|-- ReservaDAO
+DaoJdbc <|-- MenuDAO
+DaoJdbc <|-- EventoDAO
+DaoJdbc <|-- SeniaPagoDAO
+DaoJdbc <|-- AdministradorDAO
+DaoJdbc ..> Conexion : obtener()
+DaoJdbc ..> PersistenciaException : <<lanza>>
+Conexion ..> BD : JDBC
+ReservaService ..> Dao
+ClienteService ..> Dao
+MenuService ..> Dao
+PagoService ..> Dao
+ReporteService ..> Dao
+ArchivoService ..> Dao
+ReservaService ..> Conexion : enTransaccion()
+ArchivoService ..> Conexion : enTransaccion()
+@enduml

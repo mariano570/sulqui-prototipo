@@ -1,0 +1,56 @@
+@startuml
+!include _estilo.iuml
+hide circle
+hide empty members
+top to bottom direction
+package "com.sulqui.archivo" {
+  abstract class "ArchivoCsv<T>" as ACsv <<abstract>> {
+    + {static} SEPARADOR : String = ";"
+    # {abstract} columnas() : String[]
+    # {abstract} aFila(objeto : T) : String[]
+    # {abstract} desdeFila(campos : String[], linea : int) : T
+    + exportar(objetos : List<T>, destino : Path) : int  {final}
+    + importar(origen : Path) : ArrayList<T>  {final}
+  }
+  class MenuCsv
+  class ReservaCsv
+  class ArchivoException
+}
+package "com.sulqui.servicio" {
+  class ArchivoService {
+    + exportarReservas(destino : Path) : int
+    + respaldarCatalogo(destino : Path) : int
+    + restaurarCatalogo(origen : Path) : ResultadoRestauracion
+  }
+  class ReporteService {
+    + resumenAnual(anio : int) : ResumenAnual
+    + reservasPorEstado() : int[]
+    + grillaCalendario(mes : YearMonth) : int[][]
+  }
+  class ResumenAnual {
+    - eventos : int[12]
+    - comensales : int[12]
+    - facturacion : BigDecimal[12]
+    + getEventos() : int[]  {copia}
+    + totalFacturacion() : BigDecimal
+    + mesDeMayorDemanda() : int
+  }
+}
+abstract class SulquiException <<abstract>>
+ACsv <|-- MenuCsv
+ACsv <|-- ReservaCsv
+SulquiException <|-- ArchivoException
+ACsv ..> ArchivoException : <<lanza>>
+ArchivoService -down-> MenuCsv
+ArchivoService -down-> ReservaCsv
+ReporteService .down.> ResumenAnual : <<crea>>
+note left of ResumenAnual
+  ArrayList: filas que devuelve la base (cantidad variable).
+  Arreglos: 12 meses, 5 estados, grilla 6 x 7 del
+  calendario y catálogo ordenado para búsqueda binaria.
+end note
+note right of ArchivoService
+  restaurarCatalogo: 1) valida todo el archivo;
+  2) graba en una transacción (todo o nada).
+end note
+@enduml

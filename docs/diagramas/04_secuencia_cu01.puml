@@ -1,0 +1,29 @@
+@startuml
+!include _estilo.iuml
+autonumber
+hide footbox
+actor "Cliente" as C
+boundary ":VentanaCliente" as V <<boundary>>
+control ":ReservaService" as S <<control>>
+participant ":ReservaDAO" as D <<DAO>>
+database "sulqui_db" as BD <<MySQL>>
+
+C -> V : selecciona fecha y pulsa "Consultar"
+activate V
+V -> S : consultarDisponibilidad(fecha)
+activate S
+S -> D : existeReservaConfirmada(fecha)
+activate D
+D -> BD : SELECT COUNT(*) FROM reserva\nWHERE fecha = ? AND estado = 'Confirmada'
+BD --> D : cantidad
+D --> S : cantidad > 0
+deactivate D
+S --> V : disponible : boolean
+deactivate S
+alt disponible = true
+  V --> C : "El dd/mm/aaaa está disponible"
+else disponible = false
+  V --> C : "La fecha ya tiene un evento confirmado"
+end
+deactivate V
+@enduml

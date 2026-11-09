@@ -1,0 +1,44 @@
+@startuml
+!include _estilo.iuml
+autonumber
+hide footbox
+actor "Cliente" as C
+boundary ":VentanaCliente" as V <<boundary>>
+control ":ClienteService" as CS <<control>>
+control ":ReservaService" as S <<control>>
+entity ":Reserva" as R <<entity>>
+participant ":ReservaDAO" as D <<DAO>>
+database "sulqui_db" as BD <<MySQL>>
+
+C -> V : completa datos, menú, fecha y comensales;\npulsa "Enviar solicitud"
+activate V
+V -> CS : registrarCliente(nombre, telefono, email)
+activate CS
+CS -> BD : SELECT / INSERT cliente (vía ClienteDAO)
+CS --> V : idCliente
+deactivate CS
+V -> S : solicitarReserva(idCliente, idMenu, fecha, comensales)
+activate S
+S -> S : validarComensales(comensales)
+alt comensales < 10 o > 150
+  S --> V : ValidacionException
+  V --> C : "La cantidad de comensales debe estar entre 10 y 150"
+else comensales válidos
+  S -> D : existeReservaConfirmada(fecha)
+  activate D
+  D -> BD : SELECT COUNT(*) ...
+  D --> S : false
+  deactivate D
+  S -> R ** : <<create>> Reserva(idCliente, idMenu, fecha, comensales)\nestado = PENDIENTE
+  S -> D : insertar(reserva)
+  activate D
+  D -> BD : INSERT INTO reserva (...)
+  BD --> D : id_reserva generado
+  D --> S : idReserva
+  deactivate D
+  S --> V : idReserva
+  V --> C : "Solicitud N.º idReserva recibida (Pendiente)"
+end
+deactivate S
+deactivate V
+@enduml

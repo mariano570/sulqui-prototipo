@@ -1,0 +1,8 @@
+id_evento	id_reserva	fecha	direccion	horario
+1	1	2026-11-15	Av. Colon 1234, Cordoba	13:00:00
+2	3	2026-12-05	Ruta 20 Km 8, Cordoba	20:00:00
+3	2	2026-11-22	Bv. San Juan 800, Cordoba	12:30:00
+id_menu	nombre	precio_persona
+1	Asado clasico	8500.00
+2	Comida al disco	7200.00
+3	Parrillada premium	11000.00

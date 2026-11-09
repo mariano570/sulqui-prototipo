@@ -1,0 +1,33 @@
+@startuml
+!include _estilo.iuml
+autonumber
+hide footbox
+actor "Administrador" as A
+boundary ":VentanaAdministrador" as V <<boundary>>
+control ":ReservaService" as S <<control>>
+participant ":ReservaDAO" as D <<DAO>>
+control ":NotificacionService" as N <<control>>
+database "sulqui_db" as BD <<MySQL>>
+
+A -> V : selecciona solicitud y pulsa "Confirmar"
+activate V
+V -> S : confirmarReserva(idReserva, idAdmin)
+activate S
+S -> D : buscarPorId(idReserva)
+D -> BD : SELECT * FROM reserva WHERE id_reserva = ?
+D --> S : reserva (estado = PENDIENTE)
+S -> D : existeReservaConfirmada(reserva.fecha)
+D --> S : false
+S -> D : actualizarEstado(idReserva, idAdmin, CONFIRMADA)
+D -> BD : UPDATE reserva SET id_admin = ?, estado = 'Confirmada' ...
+group <<include>> Enviar notificación
+  S -> N : enviarNotificacion(emailCliente, mensaje)
+  activate N
+  N --> S
+  deactivate N
+end
+S --> V
+deactivate S
+V --> A : "Reserva N.º confirmada y cliente notificado"
+deactivate V
+@enduml

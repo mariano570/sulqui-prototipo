@@ -1,0 +1,22 @@
+@startuml
+!include _estilo.iuml
+skinparam rectangle {
+  BackgroundColor #FCF8F5
+  BorderColor #8A3A1B
+}
+rectangle "<b>Capa de presentación</b>\nJava Swing (com.sulqui.ui): VentanaInicio · VentanaCliente · DialogoLogin · DialogoEvento · VentanaAdministrador\nConsola (com.sulqui.app): MenuConsola" as P
+rectangle "<b>Capa de lógica de negocio</b> (com.sulqui.servicio)\nReservaService · ClienteService · PagoService\nMenuService · AutenticacionService · NotificacionService\nReporteService · ArchivoService\nJerarquía de excepciones SulquiException" as N
+rectangle "<b>Componentes de soporte</b>\ncom.sulqui.estructuras: ListaEnlazada · Pila · Cola · Algoritmos\ncom.sulqui.notificacion: CanalEmail · CanalWhatsApp\ncom.sulqui.archivo: ArchivoCsv · MenuCsv · ReservaCsv" as E
+rectangle "<b>Capa de acceso a datos — patrón DAO + Singleton</b> (com.sulqui.dao)\nDao<T> (interfaz) · DaoJdbc<T> (abstracta) · PersistenciaException\nReservaDAO · ClienteDAO · MenuDAO · EventoDAO · SeniaPagoDAO · AdministradorDAO\nConexion <<Singleton>>: conexiones y transacciones" as D
+database "MySQL 8 — sulqui_db" as BD
+folder "Archivos CSV\ndatos/respaldos · datos/exportaciones" as F
+rectangle "<b>Modelo de dominio</b>\n(com.sulqui.modelo)\nPersona · Cliente · Administrador\nReserva · MenuPaquete · Evento\nSeniaPago · EstadoReserva" as M
+P -down-> N : invoca métodos (misma JVM)
+N -down-> D : invoca métodos
+N -left-> E : usa
+D -down-> BD : JDBC (SQL)
+E -down-> F : java.nio (UTF-8)
+P .right.> M
+N .right.> M
+D .right.> M
+@enduml

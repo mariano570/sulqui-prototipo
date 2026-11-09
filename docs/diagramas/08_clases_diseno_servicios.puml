@@ -1,0 +1,72 @@
+@startuml
+!include _estilo.iuml
+hide circle
+hide empty members
+top to bottom direction
+package "com.sulqui.ui / com.sulqui.app  (boundary)" {
+  class MenuConsola
+  class VentanaCliente
+  class VentanaAdministrador
+  class DialogoLogin
+}
+package "com.sulqui.servicio  (control)" as SRV {
+  class ReservaService {
+    + MIN_COMENSALES : int = 10
+    + MAX_COMENSALES : int = 150
+    + consultarDisponibilidad(fecha : LocalDate) : boolean
+    + validarComensales(cantidad : int) : void
+    + solicitarReserva(idCliente : int, idMenu : int, fecha : LocalDate, comensales : int) : int
+    + confirmarReserva(idReserva : int, idAdmin : int) : void
+    + confirmarReserva(idReserva : int, idAdmin : int, direccion : String, horario : LocalTime) : void
+    + buscarEvento(idReserva : int) : Evento
+    + rechazarReserva(idReserva : int, idAdmin : int, motivo : String) : void
+    + calcularTotal(idMenu : int, comensales : int) : BigDecimal
+    + consultarDisponibilidad(dia : int, mes : int, anio : int) : boolean
+    + calendarioDelMes(mes : YearMonth) : List<Reserva>
+    + colaDePendientes() : Cola<Reserva>
+    + reservasOrdenadas(criterio : Comparator) : ListaEnlazada<Reserva>
+  }
+  class ClienteService {
+    + registrarCliente(nombre : String, telefono : String, email : String) : int
+    + buscar(idCliente : int) : Cliente
+    + buscar(email : String) : Cliente
+    + listarOrdenados(criterio : Comparator) : ListaEnlazada<Cliente>
+    + buscarPorNombre(prefijo : String) : ListaEnlazada<Cliente>
+    + obtenerReservas(idCliente : int) : List<Reserva>
+    + eliminarCliente(idCliente : int) : void
+  }
+  class PagoService {
+    + registrarPago(idReserva : int, monto : BigDecimal, medio : String) : int
+    + listarPorReserva(idReserva : int) : List<SeniaPago>
+  }
+  class MenuService {
+    - historialPrecios : Pila<CambioPrecio>
+    + listarMenus() : List<MenuPaquete>
+    + listarPorPrecio() : MenuPaquete[]
+    + agregarMenu(nombre : String, precio : BigDecimal, tipo : String) : int
+    + actualizarPrecio(idMenu : int, precio : BigDecimal) : CambioPrecio
+    + deshacerUltimoCambio() : CambioPrecio
+  }
+  class AutenticacionService {
+    + login(usuario : String, contrasenia : char[]) : Administrador
+  }
+  class NotificacionService {
+    + notificar(cliente : Cliente, mensaje : String) : void
+  }
+}
+VentanaCliente ..> ReservaService
+VentanaCliente ..> ClienteService
+VentanaCliente ..> MenuService
+VentanaAdministrador ..> PagoService
+VentanaAdministrador ..> ReservaService
+DialogoLogin ..> AutenticacionService
+MenuConsola ..> ReservaService
+MenuConsola ..> MenuService
+ReservaService ..> NotificacionService : <<usa>>
+PagoService ..> NotificacionService : <<usa>>
+ReservaService -[hidden]right- ClienteService
+ReservaService -[hidden]down- PagoService
+ClienteService -[hidden]down- MenuService
+PagoService -[hidden]down- AutenticacionService
+MenuService -[hidden]down- NotificacionService
+@enduml
